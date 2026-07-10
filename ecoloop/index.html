@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoLoop — Moda Circular y Sostenible</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Announcement bar ── -->
+  <div class="announce-bar">
+    <span>🇵🇪 ¡JULIO PATRIO! 20% de descuento en la segunda prenda durante todo julio</span>
+    <span class="sep">|</span>
+    <span>♻️ Dona ropa y recibe <strong>15% de descuento</strong> en tu próxima compra o reparación</span>
+    <span class="sep">|</span>
+    <span>✂️ Reparaciones: <strong>15% de descuento</strong> en tu primera reparación</span>
+  </div>
+
+  <!-- ── Header (compartido en toda la SPA) ── -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="#home" data-page="home" class="logo">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 4C10 4 5 9 5 15c0 4 2.2 7.5 5.5 9.5L14 30h4l3.5-5.5C24.8 22.5 27 19 27 15c0-6-5-11-11-11z" fill="#52B788"/>
+          <path d="M16 4c3 4 3 8 0 11s-7 5-7 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 4c-2 5-1 9 2 11s7 4 7 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+        <span class="logo-text">eco<strong>loop</strong></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#nosotros" data-page="nosotros">Nosotros</a>
+        <a href="#segunda-mano" data-page="segunda-mano">Segunda Mano</a>
+        <a href="#moda-sostenible" data-page="moda-sostenible">Moda Sostenible</a>
+        <a href="#reparaciones" data-page="reparaciones">Reparaciones</a>
+        <a href="#contacto" data-page="contacto">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="searchToggle" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" id="cartToggle" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="icon-btn" id="authBtn" aria-label="Mi cuenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Search modal (compartido) ── -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Buscar ropa, accesorios, marcas…" />
+      <button id="searchClose">✕</button>
+    </div>
+    <p class="search-hint">Tendencias: segunda mano, upcycled, reparaciones, retro</p>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       APP ROOT — una sección "page" por ruta,
+       el router (router.js) muestra solo una a la vez
+       ════════════════════════════════════════════ -->
+  <main id="appRoot">
+
+    <!-- ═══════════ PAGE: HOME ═══════════ -->
+    <div class="page active" id="page-home">
+
+      <!-- HERO — Carrusel promocional -->
+      <section class="hero-carousel" id="inicio">
+        <div class="c-slide active" style="background-image:url('IMAGES/Prendas.jpeg')">
+          <div class="c-slide-overlay"></div>
+          <div class="c-slide-body">
+            <span class="c-badge">🇵🇪 Julio Patrio</span>
+            <h1>¡Promoción Julio Patrio<br><span class="grad-text">en EcoLoop</span>!</h1>
+            <p>Celebra el mes de la patria renovando tu estilo y cuidando el planeta.<br><strong>20% de descuento en la segunda prenda</strong> durante todo julio.</p>
+            <div class="c-actions">
+              <a href="#segunda-mano" data-page="segunda-mano" class="btn-primary btn-lg">Ver colección →</a>
+              <a href="#nosotros" data-page="nosotros" class="btn-ghost">Conócenos</a>
+            </div>
+          </div>
+        </div>
+        <div class="c-slide" style="background-image:url('IMAGES/Prendas.jpeg')">
+          <div class="c-slide-overlay"></div>
+          <div class="c-slide-body">
+            <span class="c-badge">♻️ Donación</span>
+            <h1>¿Tienes ropa que<br>ya no <span class="grad-text">usas</span>?</h1>
+            <p>Dónala a EcoLoop y recibe un <strong>15% de descuento</strong><br>en tu próxima compra o reparación.</p>
+            <div class="c-actions">
+              <a href="#contacto" data-page="contacto" class="btn-primary btn-lg">Quiero donar ropa</a>
+            </div>
+          </div>
+        </div>
+        <div class="c-slide" style="background-image:url('IMAGES/slides/hero-2.jpg')">
+          <div class="c-slide-overlay"></div>
+          <div class="c-slide-body">
+            <span class="c-badge">✂️ Reparaciones</span>
+            <h1>Tu ropa favorita,<br><span class="grad-text">como nueva</span></h1>
+            <p><strong>15% de descuento en tu primera reparación.</strong><br>Trae tu prenda dañada — la devolvemos a la vida.</p>
+            <div class="c-actions">
+              <a href="#reparaciones" data-page="reparaciones" class="btn-primary btn-lg">Llevar al taller →</a>
+            </div>
+          </div>
+        </div>
+        <div class="c-slide" style="background-image:url('IMAGES/slides/hero-3.jpg')">
+          <div class="c-slide-overlay"></div>
+          <div class="c-slide-body">
+            <span class="c-badge">🌿 EcoLoop</span>
+            <h1>Cada prenda merece<br>una <span class="grad-text">segunda oportunidad</span></h1>
+            <p>En EcoLoop creemos que puedes vestir diferente, ahorrar dinero<br>y ayudar a reducir el impacto ambiental.</p>
+            <div class="c-actions">
+              <a href="#nosotros" data-page="nosotros" class="btn-primary btn-lg">Conócenos →</a>
+              <a href="#segunda-mano" data-page="segunda-mano" class="btn-ghost">Ver colección</a>
+            </div>
+          </div>
+        </div>
+        <!-- Controles -->
+        <button class="c-btn c-prev" id="cPrev">&#8249;</button>
+        <button class="c-btn c-next" id="cNext">&#8250;</button>
+        <div class="c-dots" id="cDots">
+          <span class="cdot active"></span>
+          <span class="cdot"></span>
+          <span class="cdot"></span>
+          <span class="cdot"></span>
+        </div>
+      </section>
+
+      <!-- Showcase quick nav -->
+      <section class="showcase-bar">
+        <a href="#nosotros" data-page="nosotros" class="showcase-item"><span class="sc-icon">👋</span> Nosotros</a>
+        <a href="#segunda-mano" data-page="segunda-mano" class="showcase-item"><span class="sc-icon">👗</span> Segunda Mano</a>
+        <a href="#moda-sostenible" data-page="moda-sostenible" class="showcase-item"><span class="sc-icon">🌿</span> Moda Sostenible</a>
+        <a href="#reparaciones" data-page="reparaciones" class="showcase-item"><span class="sc-icon">✂️</span> Reparaciones</a>
+        <a href="#contacto" data-page="contacto" class="showcase-item"><span class="sc-icon">💬</span> Contacto</a>
+      </section>
+
+      <!-- MENSAJE 2 — Colección -->
+      <section class="section">
+        <div class="feature-block reveal">
+          <div class="fb-copy">
+            <span class="section-tag">Colección única</span>
+            <h2>¿Buscas un look <span class="grad-text">original</span> que nadie más tenga?</h2>
+            <p>Explora nuestra colección. Desde <strong>prendas retro de edición única</strong> seleccionadas a mano hasta nuestra <strong>línea exclusiva Upcycled</strong>, hecha 100% con retazos recuperados.</p>
+            <div class="fb-tags">
+              <span class="fb-tag"><b>★</b> Edición única</span>
+              <span class="fb-tag"><b>♻</b> 100% Upcycled</span>
+              <span class="fb-tag"><b>✓</b> Selección a mano</span>
+            </div>
+            <a href="#segunda-mano" data-page="segunda-mano" class="btn-primary">Ver la colección →</a>
+          </div>
+          <div class="fb-visual">
+            <div class="fb-glow"></div>
+            <div class="fb-visual-frame">
+              <img src="IMAGES/vintage/vintage-2.jpg" alt="Colección única EcoLoop" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENSAJE 3 — Reparaciones -->
+      <section class="section section-alt">
+        <div class="feature-block reverse reveal">
+          <div class="fb-copy">
+            <span class="section-tag">Taller EcoLoop</span>
+            <h2>Tu ropa favorita, <span class="grad-text">como nueva</span> (o mejor)</h2>
+            <p>No la tires, <strong>¡hazle un loop!</strong> En EcoLoop no solo te vestimos, también cuidamos lo que ya tienes en el clóset. Trae o envía tus prendas dañadas: reparamos cierres, ajustamos tallas y transformamos lo antiguo en algo totalmente renovado.</p>
+            <div class="fb-tags">
+              <span class="fb-tag"><b>🔧</b> Cierres y costuras</span>
+              <span class="fb-tag"><b>📐</b> Ajuste de tallas</span>
+              <span class="fb-tag"><b>✨</b> Transformación</span>
+            </div>
+            <a href="#reparaciones" data-page="reparaciones" class="btn-primary">Dale más vida a tu clóset →</a>
+          </div>
+          <div class="fb-visual">
+            <div class="fb-glow"></div>
+            <div class="fb-visual-frame">
+              <img src="IMAGES/COSER.jpg" alt="Taller de reparaciones EcoLoop" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Por qué EcoLoop -->
+      <section class="section">
+        <div class="section-header reveal">
+          <span class="section-tag">¿Por qué EcoLoop?</span>
+          <h2>Moda que tiene sentido en <span class="grad-text">todos los aspectos</span></h2>
+        </div>
+        <div class="why-grid reveal">
+          <div class="why-card">
+            <span class="why-icon">🌿</span>
+            <h3>Impacto ambiental</h3>
+            <p>Cada prenda reutilizada evita 2,700 litros de agua y 3 kg de CO₂. Pequeñas decisiones, gran cambio.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">💰</span>
+            <h3>Precios accesibles</h3>
+            <p>Ahorra hasta 80% frente al precio original. Calidad accesible para todos los presupuestos.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">✅</span>
+            <h3>Calidad verificada</h3>
+            <p>Cada prenda pasa por revisión antes de publicarse. Descripciones honestas y detalladas.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">🔄</span>
+            <h3>Economía circular</h3>
+            <p>Compramos, vendemos, reparamos y facilitamos la donación. Cerramos el ciclo de cada prenda.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Donación (hero con imagen de fondo) -->
+      <section class="hero-donation-simple" id="donar" style="background-image: url('IMAGES/proceso-1.jpg');">
+        <div class="donation-overlay"></div>
+        <div class="donation-box reveal">
+          <span class="donation-icon">♻️</span>
+          <h2>¿Tienes ropa que ya no usas?</h2>
+          <p>Dónala a EcoLoop y recibe un <strong>15%</strong> de descuento en tu próxima compra o reparación.</p>
+          <a href="#contacto" data-page="contacto" class="btn-primary btn-lg">Quiero donar ropa</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ═══════════ PAGE: NOSOTROS ═══════════ -->
+    <div class="page" id="page-nosotros">
+      <section class="section" id="nosotros">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-visual">
+              <div class="about-img-wrap">
+                <div class="about-img-main">
+                  <img src="IMAGES/vintage/vintage-3.jpg" alt="Equipo EcoLoop" />
+                </div>
+                <div class="about-badge-float">
+                  <strong>100%</strong>
+                  <span>Circular</span>
+                </div>
+              </div>
+            </div>
+            <div class="about-text">
+              <span class="section-tag">Quiénes somos</span>
+              <h2>¡Hola! Somos EcoLoop</h2>
+              <p>Un proyecto de <strong>moda circular y moda sostenible</strong>. Básicamente, nos encargamos de que la ropa nunca termine en la basura.</p>
+              <p>Lo hacemos de <strong>tres formas</strong>: seleccionamos y vendemos ropa de segunda mano en excelente estado; diseñamos prendas nuevas y únicas combinando retazos de tela reciclados; y además, tenemos un taller de reparación para arreglar o transformar esa ropa que ya tienes y no quieres dejar de usar.</p>
+              <p><em>Es moda consciente, única y hecha para durar.</em></p>
+              <div class="tres-pilares">
+                <div class="pilar">
+                  <span>👗</span>
+                  <strong>Segunda Mano</strong>
+                  <p>Prendas seleccionadas, verificadas y limpias</p>
+                </div>
+                <div class="pilar">
+                  <span>🌿</span>
+                  <strong>Moda Sostenible</strong>
+                  <p>Diseño propio con retazos reciclados</p>
+                </div>
+                <div class="pilar">
+                  <span>✂️</span>
+                  <strong>Reparaciones</strong>
+                  <p>Taller para arreglar y transformar tu ropa</p>
+                </div>
+              </div>
+              <a href="#contacto" data-page="contacto" class="btn-primary">Contáctanos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-header">
+            <h2>¿Por qué EcoLoop?</h2>
+            <p>Moda que tiene sentido en todos los aspectos</p>
+          </div>
+          <div class="why-grid">
+            <div class="why-card">
+              <div class="why-icon">🌿</div>
+              <h3>Impacto ambiental</h3>
+              <p>Cada prenda reutilizada evita 2,700 litros de agua y 3 kg de CO₂. Pequeñas decisiones, gran cambio.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">💰</div>
+              <h3>Precios accesibles</h3>
+              <p>Ahorra hasta 80% frente al precio original. Moda de calidad accesible para todos los presupuestos.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">✅</div>
+              <h3>Calidad verificada</h3>
+              <p>Cada prenda pasa por revisión antes de publicarse. Sin sorpresas: descripciones honestas y detalladas.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">🔄</div>
+              <h3>Economía circular</h3>
+              <p>Compramos, vendemos, reparamos y facilitamos la donación. Cerramos el ciclo de vida de cada prenda.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="stats-bar">
+        <div class="stat"><strong>2,400+</strong><span>Prendas disponibles</span></div>
+        <div class="stat"><strong>3 servicios</strong><span>Segunda mano · Diseño · Reparación</span></div>
+        <div class="stat"><strong>80%</strong><span>Ahorro promedio</span></div>
+        <div class="stat"><strong>100%</strong><span>Moda circular</span></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ PAGE: SEGUNDA MANO ═══════════ -->
+    <div class="page" id="page-segunda-mano">
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Selección curada</span>
+            <h2>Prendas de Segunda Mano</h2>
+          </div>
+
+          <div class="seccion-intro">
+            <div class="si-text">
+              <p>¡Hola! Toda esta zona es nuestra <strong>selección de segunda mano a precios súper accesibles</strong>. La idea de EcoLoop es que puedas renovar tu clóset con prendas únicas, que estén en perfecto estado y limpias, pero sin gastar de más.</p>
+              <p>Te llevas ropa de buena calidad por <strong>una fracción de lo que cuesta en un centro comercial</strong>, y de paso ayudas al planeta.</p>
+            </div>
+            <div class="si-badges">
+              <span class="si-badge">✔ Perfecto estado</span>
+              <span class="si-badge">✔ Limpias</span>
+              <span class="si-badge">✔ Precio justo</span>
+              <span class="si-badge">✔ Ayudas al planeta</span>
+            </div>
+          </div>
+
+          <div class="subsection-title">
+            <h3>¿Cómo funciona EcoLoop?</h3>
+            <p>Del clóset ajeno al tuyo en 4 pasos</p>
+          </div>
+          <div class="flow-steps" id="proceso">
+            <div class="flow-step">
+              <div class="flow-num">01</div>
+              <div class="flow-icon">🛍️</div>
+              <h3>Adquirimos</h3>
+              <p>Compramos y recibimos donaciones de ropa usada en buen estado de particulares y tiendas.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-num">02</div>
+              <div class="flow-icon">🔍</div>
+              <h3>Verificamos</h3>
+              <p>Cada prenda es revisada, limpiada y clasificada por condición: Como nuevo, Muy bueno o Bueno.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-num">03</div>
+              <div class="flow-icon">📸</div>
+              <h3>Publicamos</h3>
+              <p>Fotografiamos y describimos honestamente cada pieza con talla, marca y estado real.</p>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step">
+              <div class="flow-num">04</div>
+              <div class="flow-icon">♻️</div>
+              <h3>Nueva vida</h3>
+              <p>La prenda llega a su nuevo dueño. El ciclo se cierra — y vuelve a empezar.</p>
+            </div>
+          </div>
+
+          <div class="subsection-title" style="margin-top:56px">
+            <h3>Nuestro catálogo</h3>
+            <p>Selección verificada por nuestro equipo</p>
+          </div>
+
+          <div class="filter-bar">
+            <button class="filter-btn active" data-cat="todos">Todos</button>
+            <button class="filter-btn" data-cat="hombre">Hombre</button>
+            <button class="filter-btn" data-cat="mujer">Mujer</button>
+            <button class="filter-btn" data-cat="polos">Polos</button>
+            <button class="filter-btn" data-cat="poleras">Poleras</button>
+            <button class="filter-btn" data-cat="pantalones">Pantalones</button>
+            <button class="filter-btn" data-cat="casacas">Casacas</button>
+          </div>
+
+          <div class="products-grid" id="productsGrid">
+
+            <!-- ── POLOS HOMBRE ── -->
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-ck-negro.jpeg" alt="Polo Calvin Klein Negro" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Calvin Klein Negro</h3>
+                <div class="product-price"><span class="price-current">S/. 22</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Calvin Klein</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Calvin Klein Negro', 22)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-lacoste-rojo.jpeg" alt="Polo Lacoste Rojo" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Lacoste Rojo</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Lacoste</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Lacoste Rojo', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-rl-rosado.jpeg" alt="Polo Ralph Lauren Rosado" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Ralph Lauren Rosado</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Ralph Lauren</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Ralph Lauren Rosado', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-rl-navy.jpeg" alt="Polo Ralph Lauren Navy" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Ralph Lauren Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Ralph Lauren</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Ralph Lauren Navy', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-tommy-blanco.jpeg" alt="Polo Tommy Hilfiger Blanco" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Tommy Hilfiger Blanco</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Tommy Hilfiger</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Tommy Hilfiger Blanco', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-nautica-rosa.jpeg" alt="Polo Nautica Rosa" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Nautica Rosa</h3>
+                <div class="product-price"><span class="price-current">S/. 22</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Nautica</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Nautica Rosa', 22)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-lacoste-negro.jpeg" alt="Polo Lacoste Negro" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Lacoste Negro</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Lacoste</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Lacoste Negro', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-uspa-navy.jpeg" alt="Polo U.S. Polo Assn Navy" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo U.S. Polo Assn Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>U.S. Polo Assn</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo U.S. Polo Assn Navy', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-moncler-blanco.jpeg" alt="Polo Moncler Blanco" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Moncler Blanco</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Moncler</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Moncler Blanco', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-queen-vintage.jpeg" alt="Polo Queen Vintage" />
+                <div class="product-badges"><span class="badge badge-vintage">Vintage</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos Vintage</span>
+                <h3>Polo Queen Vintage</h3>
+                <div class="product-price"><span class="price-current">S/. 22</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Band Tee</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Queen Vintage', 22)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-yankees-verde.jpeg" alt="Polo Yankees Verde" />
+                <div class="product-badges"><span class="badge badge-vintage">Vintage</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos Vintage</span>
+                <h3>Polo Yankees Verde</h3>
+                <div class="product-price"><span class="price-current">S/. 22</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>MLB</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Yankees Verde', 22)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polo-lacoste-rayas.jpeg" alt="Polo Lacoste Rayas" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Polos</span>
+                <h3>Polo Lacoste Rayas Verde</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Lacoste</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Lacoste Rayas Verde', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <!-- ── POLERAS HOMBRE ── -->
+            <div class="product-card" data-cat="hombre poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polera-adidas-negra.jpeg" alt="Polera Adidas Negra" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Poleras</span>
+                <h3>Polera Adidas Negra</h3>
+                <div class="product-price"><span class="price-current">S/. 40</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Adidas</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera Adidas Negra', 40)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polera-champion-verde.jpeg" alt="Polera Champion Verde" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Poleras</span>
+                <h3>Polera Champion Verde</h3>
+                <div class="product-price"><span class="price-current">S/. 40</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Champion</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera Champion Verde', 40)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polera-champion-navy.jpeg" alt="Polera Champion Navy" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Poleras</span>
+                <h3>Polera Champion Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 40</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Champion</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera Champion Navy', 40)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polera-nike-navy.jpeg" alt="Polera Nike Navy" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Poleras</span>
+                <h3>Polera Nike Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 40</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Nike</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera Nike Navy', 40)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/polera-nazareth-vintage.jpeg" alt="Polera Nazareth College" />
+                <div class="product-badges"><span class="badge badge-vintage">Vintage</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Poleras Vintage</span>
+                <h3>Polera Nazareth College</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Vintage</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera Nazareth College', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/sweater-cable-navy.jpeg" alt="Sweater Cable Knit Navy" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Sweaters</span>
+                <h3>Sweater Cable Knit Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Clásico</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Sweater Cable Knit Navy', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <!-- ── PANTALONES HOMBRE ── -->
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/jean-levis-azul.jpeg" alt="Jean Levi's Azul" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Jeans</span>
+                <h3>Jean Levi's Azul</h3>
+                <div class="product-price"><span class="price-current">S/. 30</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Levi's</span></div>
+                <button class="btn-add" onclick="addToCart(this, "Jean Levi's Azul", 30)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/jean-pioneer-celeste.jpeg" alt="Jean Pioneer Celeste" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Jeans</span>
+                <h3>Jean Pioneer Celeste</h3>
+                <div class="product-price"><span class="price-current">S/. 28</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Pioneer</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Jean Pioneer Celeste', 28)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/jean-baggy-celeste.jpeg" alt="Jean Baggy Celeste" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Jeans</span>
+                <h3>Jean Baggy Celeste</h3>
+                <div class="product-price"><span class="price-current">S/. 28</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Thug Boys</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Jean Baggy Celeste', 28)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/pantalon-ck-negro.jpeg" alt="Pantalón CK Negro" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Pantalones</span>
+                <h3>Pantalón Calvin Klein Negro</h3>
+                <div class="product-price"><span class="price-current">S/. 30</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Calvin Klein</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Pantalón Calvin Klein Negro', 30)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/pantalon-khaki.jpeg" alt="Pantalón Khaki" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Pantalones</span>
+                <h3>Pantalón Khaki Clásico</h3>
+                <div class="product-price"><span class="price-current">S/. 28</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Clásico</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Pantalón Khaki Clásico', 28)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/pantalon-adidas-navy.jpeg" alt="Pantalón Adidas Deportivo" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Pantalones</span>
+                <h3>Pantalón Adidas Deportivo</h3>
+                <div class="product-price"><span class="price-current">S/. 30</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Adidas</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Pantalón Adidas Deportivo', 30)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/short-denim-celeste.jpeg" alt="Short Denim Celeste" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Shorts</span>
+                <h3>Short Denim Celeste</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Index</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Short Denim Celeste', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <!-- ── CASACAS HOMBRE ── -->
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/hoodie-champion-gris.jpeg" alt="Hoodie Champion Gris" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Hoodies</span>
+                <h3>Hoodie Champion Gris</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Champion</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Hoodie Champion Gris', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/hoodie-champion-negro.jpeg" alt="Hoodie Champion Negro" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Hoodies</span>
+                <h3>Hoodie Champion Negro</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Champion</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Hoodie Champion Negro', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/hoodie-mossyoak-navy.jpeg" alt="Hoodie Mossy Oak Navy" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Hoodies</span>
+                <h3>Hoodie Mossy Oak Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Mossy Oak</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Hoodie Mossy Oak Navy', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/hoodie-gap-morado.jpeg" alt="Hoodie GAP Morado" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Hoodies</span>
+                <h3>Hoodie GAP Morado</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>GAP</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Hoodie GAP Morado', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/casaca-gris-militar.jpeg" alt="Casaca Gris Militar" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Casacas</span>
+                <h3>Casaca Gris Militar</h3>
+                <div class="product-price"><span class="price-current">S/. 50</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Clásico</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Gris Militar', 50)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/casaca-nautica-negra.jpeg" alt="Casaca Nautica Negra" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Casacas</span>
+                <h3>Casaca Nautica Negra</h3>
+                <div class="product-price"><span class="price-current">S/. 50</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Nautica</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Nautica Negra', 50)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/casaca-llbean-vintage.jpeg" alt="Casaca L.L.Bean Vintage" />
+                <div class="product-badges"><span class="badge badge-vintage">Vintage</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Casacas Vintage</span>
+                <h3>Casaca L.L.Bean Vintage</h3>
+                <div class="product-price"><span class="price-current">S/. 50</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>L.L.Bean</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca L.L.Bean Vintage', 50)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="hombre casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/hombre/casaca-ua-verde.jpeg" alt="Casaca Under Armour Verde" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Hombre · Casacas</span>
+                <h3>Casaca Under Armour Verde</h3>
+                <div class="product-price"><span class="price-current">S/. 50</span></div>
+                <div class="product-meta"><span>Talla M/L</span><span>·</span><span>Under Armour</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Under Armour Verde', 50)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <!-- ── MUJER ── -->
+            <div class="product-card" data-cat="mujer polos">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/polo-disney-mickey.jpeg" alt="Polo Disney Mickey" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Polos</span>
+                <h3>Polo Disney Mickey</h3>
+                <div class="product-price"><span class="price-current">S/. 22</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Disney</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Disney Mickey', 22)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/hoodie-terciopelo-verde.jpeg" alt="Hoodie Terciopelo Verde" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Hoodies</span>
+                <h3>Hoodie Terciopelo Verde</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Exclusivo</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Hoodie Terciopelo Verde', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/casaca-bomber-floral.jpeg" alt="Casaca Bomber Floral" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Casacas</span>
+                <h3>Casaca Bomber Floral</h3>
+                <div class="product-price"><span class="price-current">S/. 50</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Index</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Bomber Floral', 50)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer casacas">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/casaca-denim-mujer.jpeg" alt="Casaca Denim Mujer" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Casacas</span>
+                <h3>Casaca Denim Mujer</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Denim</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Denim Mujer', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer poleras">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/camisa-flanela-navy.jpeg" alt="Camisa Flanela Navy" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Camisas</span>
+                <h3>Camisa Flanela Navy</h3>
+                <div class="product-price"><span class="price-current">S/. 35</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Lululemon</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Camisa Flanela Navy', 35)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/short-denim-azul.jpeg" alt="Short Denim Azul" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Shorts</span>
+                <h3>Short Denim Azul</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Luxury</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Short Denim Azul', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/short-denim-negro.jpeg" alt="Short Denim Negro" />
+                <div class="product-badges"><span class="badge badge-new">Como nuevo</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Shorts</span>
+                <h3>Short Denim Negro</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Denim</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Short Denim Negro', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card" data-cat="mujer pantalones">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/mujer/short-denim-blanco.jpeg" alt="Short Denim Blanco" />
+                <div class="product-badges"><span class="badge badge-good">Muy bueno</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Mujer · Shorts</span>
+                <h3>Short Denim Blanco</h3>
+                <div class="product-price"><span class="price-current">S/. 25</span></div>
+                <div class="product-meta"><span>Talla M</span><span>·</span><span>Denim</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Short Denim Blanco', 25)">Agregar al carrito</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="view-more-wrap">
+            <a href="#contacto" data-page="contacto" class="btn-outline">¿Buscas algo específico? Escríbenos</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════════ PAGE: MODA SOSTENIBLE ═══════════ -->
+    <div class="page" id="page-moda-sostenible">
+      <section class="section moda-sos-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Diseño propio · Piezas únicas</span>
+            <h2>Moda Sostenible</h2>
+          </div>
+
+          <div class="ms-intro-banner">
+            <div class="ms-hl-row">
+              <div class="ms-hl"><strong>✂️</strong><span>Upcycling artesanal</span></div>
+              <div class="ms-hl"><strong>🌱</strong><span>Piezas únicas @REFFINATO</span></div>
+              <div class="ms-hl"><strong>⭐</strong><span>Tallas M y L disponibles</span></div>
+              <div class="ms-hl"><strong>♻️</strong><span>Moda circular con propósito</span></div>
+            </div>
+          </div>
+
+          <div class="products-grid" style="margin-top:32px">
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/camisa-tiedye-azul.jpeg" alt="Camisa Tie-Dye Azul" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Camisas</span>
+                <h3>Camisa Tie-Dye Azul</h3>
+                <div class="product-price"><span class="price-current">S/. 55</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Camisa Tie-Dye Azul', 55)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/polera-nike-patchwork.jpeg" alt="Polera Nike Patchwork" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Poleras</span>
+                <h3>Polera Nike Patchwork</h3>
+                <div class="product-price"><span class="price-current">S/. 60</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera Nike Patchwork', 60)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/polera-knl-floral.jpeg" alt="Polera KNL Floral" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Poleras</span>
+                <h3>Polera KNL Floral</h3>
+                <div class="product-price"><span class="price-current">S/. 55</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polera KNL Floral', 55)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/casaca-transparente-floral.jpeg" alt="Casaca Transparente Floral" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Casacas</span>
+                <h3>Casaca Transparente Floral</h3>
+                <div class="product-price"><span class="price-current">S/. 65</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Transparente Floral', 65)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/casaca-denim-tejida.jpeg" alt="Casaca Denim Tejida" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Casacas</span>
+                <h3>Casaca Denim Tejida</h3>
+                <div class="product-price"><span class="price-current">S/. 65</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Denim Tejida', 65)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/casaca-snacks.jpeg" alt="Casaca Snacks Upcycling" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Casacas</span>
+                <h3>Casaca Snacks Upcycling</h3>
+                <div class="product-price"><span class="price-current">S/. 60</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Snacks Upcycling', 60)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/casaca-camo-denim.jpeg" alt="Casaca Camo Denim" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Casacas</span>
+                <h3>Casaca Camo Denim</h3>
+                <div class="product-price"><span class="price-current">S/. 65</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Camo Denim', 65)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/camisa-andina-bordada.jpeg" alt="Camisa Andina Bordada" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Camisas</span>
+                <h3>Camisa Andina Bordada</h3>
+                <div class="product-price"><span class="price-current">S/. 65</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Artesanal</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Camisa Andina Bordada', 65)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/casaca-cuero-negro.jpeg" alt="Casaca Cuero Negro" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Casacas</span>
+                <h3>Casaca Cuero Negro</h3>
+                <div class="product-price"><span class="price-current">S/. 65</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Casaca Cuero Negro', 65)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/polo-checkers.jpeg" alt="Polo Checkers" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Polos</span>
+                <h3>Polo Checkers Upcycling</h3>
+                <div class="product-price"><span class="price-current">S/. 50</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Polo Checkers Upcycling', 50)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/camisa-botanica-negra.jpeg" alt="Camisa Botánica Negra" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Camisas</span>
+                <h3>Camisa Botánica Negra</h3>
+                <div class="product-price"><span class="price-current">S/. 55</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Camisa Botánica Negra', 55)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/sweater-rayas-burgundy.jpeg" alt="Sweater Rayas Burgundy" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Sweaters</span>
+                <h3>Sweater Rayas Burgundy</h3>
+                <div class="product-price"><span class="price-current">S/. 55</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Sweater Rayas Burgundy', 55)">Agregar al carrito</button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <div class="product-img">
+                <img src="IMAGES/catalogo/moda-sostenible/chaleco-transparente.jpeg" alt="Chaleco Transparente" />
+                <div class="product-badges"><span class="badge badge-sos">@REFFINATO</span></div>
+                <button class="wishlist-btn" aria-label="Guardar">♡</button>
+              </div>
+              <div class="product-info">
+                <span class="product-cat">Moda Sostenible · Chalecos</span>
+                <h3>Chaleco Transparente</h3>
+                <div class="product-price"><span class="price-current">S/. 45</span></div>
+                <div class="product-meta"><span>Talla M / L</span><span>·</span><span>Upcycling</span></div>
+                <button class="btn-add" onclick="addToCart(this, 'Chaleco Transparente', 45)">Agregar al carrito</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════════ PAGE: REPARACIONES ═══════════ -->
+    <div class="page" id="page-reparaciones">
+      <section class="section section-alt reparaciones-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Taller artesanal</span>
+            <h2>Reparaciones de Prendas</h2>
+          </div>
+
+          <div class="rep-grid">
+            <div class="rep-text">
+              <p>Además de la ropa que vendemos, aquí tenemos el <strong>taller de reparaciones de EcoLoop</strong>. Si tienes en tu casa esa casaca que adoras pero se le malogró el cierre, un jean gastado o una polera con un huequito, <strong>¡no los tires!</strong> Tráelos y los arreglamos.</p>
+              <p>Podemos hacer una <strong>reparación invisible</strong> o, si te gusta nuestro estilo, usar retazos de tela para ponerle un <strong>parche creativo</strong> y transformarla en una prenda única. Le devolvemos la vida a tu ropa favorita.</p>
+
+              <div class="rep-servicios">
+                <div class="rep-srv">
+                  <span>🔧</span>
+                  <div>
+                    <strong>Reparación invisible</strong>
+                    <p>Costuras, cierres, botones — como si nada hubiera pasado</p>
+                  </div>
+                </div>
+                <div class="rep-srv">
+                  <span>🎨</span>
+                  <div>
+                    <strong>Parche creativo</strong>
+                    <p>Retazos de tela para transformar tu prenda en algo único</p>
+                  </div>
+                </div>
+                <div class="rep-srv">
+                  <span>✨</span>
+                  <div>
+                    <strong>Transformación completa</strong>
+                    <p>Rediseñamos tu prenda con nuestro estilo EcoLoop</p>
+                  </div>
+                </div>
+              </div>
+              <a href="#contacto" data-page="contacto" class="btn-primary">Llevar mi ropa al taller</a>
+            </div>
+
+            <div class="rep-visual">
+              <div class="rep-img-stack">
+                <img src="IMAGES/COSER.jpg" alt="Taller de reparaciones EcoLoop" class="rep-img-main" />
+                <img src="IMAGES/accesorios/acc-3.jpg" alt="Prendas transformadas EcoLoop" class="rep-img-float" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="donation-banner-section">
+        <div class="donation-banner">
+          <div class="db-content">
+            <span class="db-icon">♻️</span>
+            <div class="db-text">
+              <h2>¿Tienes ropa que ya no usas?</h2>
+              <p>Dónala a EcoLoop y recibe un<br><strong>15% de descuento</strong><br>en tu próxima compra o reparación</p>
+            </div>
+            <a href="#contacto" data-page="contacto" class="btn-primary btn-donation">Quiero donar ropa</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════════ PAGE: CONTACTO ═══════════ -->
+    <div class="page" id="page-contacto">
+      <section class="section section-alt contacto-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">Hablemos</span>
+            <h2>Contáctanos</h2>
+            <p>¿Quieres comprar, traer ropa al taller, donar o simplemente saber más? Escríbenos.</p>
+          </div>
+
+          <div class="contacto-grid">
+            <!-- WhatsApp -->
+            <div class="contacto-card">
+              <div class="contacto-icon" style="background:#25D366">
+                <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.528 5.847L.057 23.03a1 1 0 0 0 1.218 1.218l5.184-1.47A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.95 9.95 0 0 1-5.073-1.386l-.364-.214-3.073.871.872-3.073-.214-.364A9.95 9.95 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+                </svg>
+              </div>
+              <h3>WhatsApp</h3>
+              <p>Respuesta rápida · Lun–Sáb, 9am–7pm</p>
+              <a href="https://wa.me/51977936578?text=Hola%20EcoLoop%2C%20me%20interesa%20más%20información"
+                 target="_blank" class="btn-contacto btn-whatsapp">
+                Abrir WhatsApp
+              </a>
+            </div>
+
+            <!-- Correo -->
+            <div class="contacto-card">
+              <div class="contacto-icon" style="background:#2D6A4F">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="28" height="28">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <h3>Correo electrónico</h3>
+              <p>Para consultas, donaciones, proveedores y prensa</p>
+              <a href="mailto:hector.sotelo.terrazasss@gmail.com?subject=Consulta%20EcoLoop"
+                 class="btn-contacto btn-email">
+                hector.sotelo.terrazasss@gmail.com
+              </a>
+            </div>
+
+            <!-- Formulario rápido -->
+            <div class="contacto-card contacto-form-card">
+              <div class="contacto-icon" style="background:#D4A373">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="28" height="28">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h3>Mensaje directo</h3>
+              <form class="mini-form" id="contactForm">
+                <input  type="text"  placeholder="Tu nombre"  required />
+                <input  type="email" placeholder="Tu correo"  required />
+                <select>
+                  <option value="">¿En qué te ayudamos?</option>
+                  <option>Quiero comprar ropa de segunda mano</option>
+                  <option>Me interesa moda sostenible</option>
+                  <option>Quiero llevar ropa al taller</option>
+                  <option>Quiero donar ropa</option>
+                  <option>Otra consulta</option>
+                </select>
+                <textarea placeholder="Tu mensaje…" rows="3"></textarea>
+                <button type="submit" class="btn-primary btn-full">Enviar mensaje</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="contacto-extra">
+            <div class="ce-item">
+              <span>🕐</span>
+              <p><strong>Horario:</strong> Lunes a Sábado, 9:00 am – 7:00 pm</p>
+            </div>
+            <div class="ce-item">
+              <span>📍</span>
+              <p><strong>Ubicación:</strong> Atención presencial con cita previa — Lima, Perú</p>
+            </div>
+            <div class="ce-item">
+              <span>🌐</span>
+              <p><strong>Redes:</strong> @ecoloop.pe en Instagram, TikTok y Facebook</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ── Newsletter (compartido) ── -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="nl-text">
+          <h2>Únete al movimiento</h2>
+          <p>Recibe alertas de nuevas prendas, colecciones sostenibles y consejos de moda circular.</p>
+        </div>
+        <form class="nl-form" id="nlForm">
+          <input type="email" placeholder="tu@correo.com" required />
+          <button type="submit">Suscribirme</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer (compartido) ── -->
+  <footer>
+    <div class="footer-inner container">
+      <div class="footer-brand">
+        <a href="#home" data-page="home" class="logo logo-light">
+          <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+            <path d="M16 4C10 4 5 9 5 15c0 4 2.2 7.5 5.5 9.5L14 30h4l3.5-5.5C24.8 22.5 27 19 27 15c0-6-5-11-11-11z" fill="#52B788"/>
+            <path d="M16 4c3 4 3 8 0 11s-7 5-7 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M16 4c-2 5-1 9 2 11s7 4 7 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          </svg>
+          <span class="logo-text">eco<strong>loop</strong></span>
+        </a>
+        <p>Moda circular y sostenible. La ropa nunca debería terminar en la basura.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://wa.me/51977936578" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#segunda-mano" data-page="segunda-mano">Segunda Mano</a></li>
+          <li><a href="#moda-sostenible" data-page="moda-sostenible">Moda Sostenible</a></li>
+          <li><a href="#reparaciones" data-page="reparaciones">Reparaciones</a></li>
+          <li><a href="#contacto" data-page="contacto">Donar ropa</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Ayuda</h4>
+        <ul>
+          <li><a href="#segunda-mano/proceso" data-page="segunda-mano" data-anchor="proceso">Cómo funciona</a></li>
+          <li><a href="#contacto" data-page="contacto">Envíos y recojo</a></li>
+          <li><a href="#contacto" data-page="contacto">Preguntas frecuentes</a></li>
+          <li><a href="#contacto" data-page="contacto">Guía de tallas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>EcoLoop</h4>
+        <ul>
+          <li><a href="#nosotros" data-page="nosotros">Quiénes somos</a></li>
+          <li><a href="#nosotros" data-page="nosotros">¿Por qué EcoLoop?</a></li>
+          <li><a href="#contacto" data-page="contacto">Trabaja con nosotros</a></li>
+          <li><a href="mailto:hector.sotelo.terrazasss@gmail.com">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2024 EcoLoop. Todos los derechos reservados. Hecho con 💚 por el planeta.</p>
+        <div class="footer-legal">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Cart Sidebar (compartido) ── -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Mi carrito</h3>
+      <button id="cartClose" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty">
+        <span>🛍️</span>
+        <p>Tu carrito está vacío</p>
+        <a href="#segunda-mano" data-page="segunda-mano" class="btn-primary" onclick="closeCart()">Ver prendas</a>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">S/. 0</strong>
+      </div>
+      <button class="btn-primary btn-full" onclick="openPayment()">Ir a pagar</button>
+      <p class="cart-note">♻️ Tu compra apoya la moda circular</p>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+  <script src="auth.js"></script>
+  <script src="router.js"></script>
+</body>
+</html>

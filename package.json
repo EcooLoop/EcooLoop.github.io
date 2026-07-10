@@ -1,0 +1,8 @@
+{
+  "name": "ecoloop",
+  "version": "1.0.0",
+  "description": "EcoLoop — Moda Circular y Sostenible (sitio estático local)",
+  "scripts": {
+    "start": "npx serve ecoloop"
+  }
+}
